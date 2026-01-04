@@ -1,0 +1,9 @@
+/.idea
+/target
+/node_modules
+**/__pycache__
+.DS_Store
+*.log
+*.pyc
+/.cargo
+/.gradle

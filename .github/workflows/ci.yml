@@ -1,0 +1,46 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+      - name: Build desktop prototype
+        run: |
+          cd client/desktop
+          cargo build --release
+      - name: Run Rust tests (shared core)
+        run: |
+          cd client/shared/core
+          cargo test --verbose
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install AI agent deps
+        run: |
+          cd client/shared/ai-agent
+          python -m pip install -r requirements.txt
+      - name: Run ai-agent health check (background)
+        run: |
+          cd client/shared/ai-agent
+          nohup python agent.py >/tmp/ai_agent.log 2>&1 &
+          sleep 2
+          python -c "import requests; print(requests.get('http://127.0.0.1:8080/health').text)"
+      - name: Build Go backend services
+        run: |
+          pushd backend/auth-service && go build -v . && popd
+          pushd backend/update-service && go build -v . && popd
+          pushd backend/model-registry && go build -v . && popd
+      - name: AIOps simulation (dry-run)
+        run: |
+          cd ops/aiops
+          python3 -m pip install --user -r requirements.txt
+          python3 agent.py --once --no-dry-run || true

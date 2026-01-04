@@ -1,0 +1,8 @@
+[package]
+name = "manva_desktop"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+manva_core = { path = "../shared/core" }

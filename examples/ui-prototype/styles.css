@@ -1,0 +1,56 @@
+:root{
+  --bg:#0f1720;--surface:#111827;--muted:#9ca3af;--accent:#7c3aed;--glass:rgba(255,255,255,0.04);
+  --radius:12px;--gap:12px;--text:#e6eef7;
+}
+*{box-sizing:border-box}
+html,body,#app{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg),#071029)}
+.topbar{display:flex;align-items:center;gap:16px;padding:12px 20px;background:transparent}
+.logo{font-weight:700;letter-spacing:1px}
+.cmdbar{flex:1;display:flex;align-items:center;gap:8px;background:var(--glass);padding:8px;border-radius:999px;backdrop-filter:blur(6px)}
+.cmdbar input{flex:1;background:transparent;border:0;color:var(--text);outline:none;padding:8px;font-size:14px}
+.cmdbar button{background:var(--accent);border:0;color:white;padding:8px 12px;border-radius:8px}
+.main{display:flex;gap:16px;padding:16px}
+.sidebar{width:220px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:12px;border-radius:12px}
+.tab{padding:10px;border-radius:8px;color:var(--muted)}
+.content{flex:1;min-height:60vh}
+.hero{padding:18px;background:var(--surface);border-radius:12px;margin-bottom:12px}
+.cards{display:flex;gap:12px;flex-wrap:wrap}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px;width:280px}
+.muted{color:var(--muted);font-size:13px}
+.summary-btn,.open-btn{margin-top:8px;padding:8px;border-radius:8px;border:0;background:#1f2937;color:var(--text)}
+.mobilebar{display:none;position:fixed;left:12px;right:12px;bottom:12px;background:var(--surface);padding:8px;border-radius:16px;justify-content:space-around}
+
+/* responsive */
+@media(max-width:800px){
+  .main{flex-direction:column}
+  .sidebar{display:none}
+  .mobilebar{display:flex}
+  .topbar{padding:8px}
+  .cmdbar{padding:6px}
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important}
+}
+
+.card:focus{outline:2px solid var(--accent)}
+
+/* Variant styles to intentionally differentiate appearance per browser/platform */
+.variant-firefox .cmdbar{border-left:3px solid #ff7a18}
+.variant-firefox .cmdbar input{font-style:italic}
+
+.variant-chrome .topbar{background:linear-gradient(90deg, rgba(124,58,237,0.06), transparent)}
+.variant-chrome .cmdbar button{background:linear-gradient(90deg,var(--accent),#5b21b6)}
+
+.variant-safari .topbar{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+.variant-safari .logo{font-weight:600;letter-spacing:2px}
+
+.variant-edge .cmdbar{box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+.variant-edge .card{border-left:4px solid #0ea5e9}
+
+.variant-android .mobilebar{display:flex}
+.variant-android .cmdbar{border-radius:999px;padding:10px}
+
+.variant-generic .cmdbar{opacity:0.98}
+

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MANVA UI Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="logo">MANVA</div>
+      <div class="cmdbar" role="search">
+        <input id="cmd-input" aria-label="Unified Command Bar" placeholder="Try: 'search rust guides' or 'summarize'" />
+        <button id="cmd-send" aria-label="Run command">⏎</button>
+      </div>
+      <div class="mode-toggle" id="modeToggle" aria-hidden="false">⚙️</div>
+    </header>
+
+    <main class="main">
+      <aside class="sidebar" aria-label="Workspace sidebar">
+        <div class="tab">Home</div>
+        <div class="tab">Browser</div>
+        <div class="tab">AI Workspace</div>
+        <div class="tab">Files</div>
+      </aside>
+
+      <section class="content" id="content" tabindex="0" aria-live="polite">
+        <div class="hero">
+          <h1>Welcome to MANVA Prototype</h1>
+          <p>Unified Command Bar — try text commands or keyboard shortcut <kbd>Ctrl</kbd>+<kbd>Space</kbd>.</p>
+        </div>
+
+        <div class="cards" id="cards">
+          <article class="card" tabindex="0">
+            <h3>AI Suggestion</h3>
+            <p class="muted">Summary available</p>
+            <button class="summary-btn">Show Summary</button>
+          </article>
+          <article class="card" tabindex="0">
+            <h3>Recent File</h3>
+            <p class="muted">notes/today.md</p>
+            <button class="open-btn">Open</button>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <nav class="mobilebar" aria-hidden="true">
+      <button class="mb">Home</button>
+      <button class="mb">Tabs</button>
+      <button class="mb">Files</button>
+      <button class="mb">AI</button>
+    </nav>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

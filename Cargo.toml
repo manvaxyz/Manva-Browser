@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "client/desktop",
+    "client/shared/core"
+]

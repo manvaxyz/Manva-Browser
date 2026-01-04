@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  auth-service:
+    build: ./backend/auth-service
+    ports:
+      - "8081:8081"
+  update-service:
+    build: ./backend/update-service
+    ports:
+      - "8082:8082"
+  model-registry:
+    build: ./backend/model-registry
+    ports:
+      - "8083:8083"
+  ai-agent:
+    image: python:3.11-slim
+    command: ["bash", "-c", "pip install flask && python /agent/agent.py"]
+    volumes:
+      - ./client/shared/ai-agent:/agent:ro
+    ports:
+      - "8080:8080"

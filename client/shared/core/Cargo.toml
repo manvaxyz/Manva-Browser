@@ -1,0 +1,12 @@
+[package]
+name = "manva_core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+regex = "1"
+
+[lib]
+name = "manva_core"
+path = "src/lib.rs"
