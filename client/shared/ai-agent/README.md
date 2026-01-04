@@ -1,12 +1,16 @@
-MANVA AI Agent (stub)
+MANVA AI Agent
 
-This folder contains a minimal Python-based AI agent stub used for intent parsing and local testing.
+This agent provides:
+- Deterministic intent classification
+- Summarization action (fetch + naive extractive summarizer)
+- Simple HTTP API for local-first usage
 
 Run locally:
+- ./run_local_agent.sh
 
-```bash
-cd client/shared/ai-agent
-./run_local_agent.sh
-```
+Docker:
+- docker build -t manva-ai-agent -f Dockerfile.agent .
 
-Replace this with an on-device model runner (GGML / ONNX) in production.
+Notes:
+- This is intentionally small and deterministic to run on-device.
+- Replace with on-device GGML/ONNX model later; ensure same endpoints.

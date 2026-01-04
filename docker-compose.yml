@@ -13,9 +13,27 @@ services:
     ports:
       - "8083:8083"
   ai-agent:
-    image: python:3.11-slim
-    command: ["bash", "-c", "pip install flask && python /agent/agent.py"]
+    build:
+      context: ./client/shared/ai-agent
+      dockerfile: Dockerfile.agent
     volumes:
       - ./client/shared/ai-agent:/agent:ro
     ports:
       - "8080:8080"
+  api:
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile
+    environment:
+      - AI_AGENT_URL=http://ai-agent:8080
+    ports:
+      - "8000:8000"
+  frontend:
+    build:
+      context: ./client/web
+      dockerfile: Dockerfile.web
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+      - ai-agent
